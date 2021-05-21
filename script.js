@@ -2,7 +2,7 @@
 var images = [];
 
 
-const updateContents = () =>{
+const updateString = () =>{
     const containerRegText = document.querySelector('.original_text');
     
     document.addEventListener('keydown', e =>{
@@ -12,27 +12,23 @@ const updateContents = () =>{
             const currentString = containerRegText.textContent;
             const newString = currentString.slice(0, currentString.length - 1);
             containerRegText.textContent = newString;
-        }else if(e.code == "Space" || e.code == "Tab" ||
-        e.code == "CapsLock" || e.code == "ShiftLeft" ||
-        e.code == "ControlLeft" || e.code == "AltLeft" ||
-        e.code == "MetaLeft" || e.code == "MetaRight" ||
-        e.code == "AltRight" || e.code == "ArrowUp" || 
-        e.code == "ArrowRight" || e.code == "ArrowLeft" || 
-        e.code == "ArrowDown" || e.code == "ShiftRight" ||
-        e.code == "Enter"){
+        }else if(e.key.length > 1 || e.code == "Space"){
             containerRegText.textContent += "";
         }
         else{
             containerRegText.textContent += `${e.key}`;
-            addCharactertoArray("B");
+            updateImages("B");
         }
         
-        console.log(e.key);
     });
 }
 
+// Konzept -> Übergabeparameter = Event Objekt
+// Innerhalb der Funktion -> Switch Case: Welchem Asset entspricht e.key
+// Abfrage => Bachspace Array.pop()
+//Helperfunktion bauen um html Objekt zu erzeugen & zu befüllen 
 
-const addCharactertoArray = (letter) =>{
+const updateImages = (letter) =>{
     const image = document.createElement('img');
     image.src  = `assets/${letter}.svg`;
     image.className = 'character';
@@ -42,4 +38,4 @@ const addCharactertoArray = (letter) =>{
     }
 }
 
-updateContents();
+updateString();
