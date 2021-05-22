@@ -1,36 +1,57 @@
 
 var images = [];
+const placeholderString = "Tell us your name.";
 
 
-const updateString = () =>{
+const updateCanvas = () =>{
     const containerRegText = document.querySelector('.original_text');
-    
+    containerRegText.textContent = placeholderString;
+
     document.addEventListener('keydown', e =>{
-        const newString = containerRegText.textContent.replace('Whats your name darling?', '');
-        containerRegText.textContent = newString;
+        const currentStringLength = containerRegText.textContent.length;
+
+        if(currentStringLength == 1){
+            const newString = containerRegText.textContent.replace("", placeholderString);
+            containerRegText.textContent = newString;
+        }
         if(e.code == "Backspace"){
+            if(containerRegText.textContent == placeholderString) return;
             const currentString = containerRegText.textContent;
             const newString = currentString.slice(0, currentString.length - 1);
             containerRegText.textContent = newString;
+            removelastImage();
         }else if(e.key.length > 1 || e.code == "Space"){
             containerRegText.textContent += "";
         }
         else{
+            const newString = containerRegText.textContent.replace(placeholderString, "");
+            containerRegText.textContent = newString;
+            
             containerRegText.textContent += `${e.key}`;
-            updateImages("B");
+            
+            addImage(e);
+            checkSizing();
         }
         
     });
 }
 
-// Konzept -> Übergabeparameter = Event Objekt
-// Innerhalb der Funktion -> Switch Case: Welchem Asset entspricht e.key
-// Abfrage => Bachspace Array.pop()
-//Helperfunktion bauen um html Objekt zu erzeugen & zu befüllen 
 
-const updateImages = (letter) =>{
+const checkSizing = () =>{
+    const allSVGs = document.getElementsByClassName("character");
+    const totalWidth = 0;
+    for(let i=0; i<allSVGs.length; i++){
+        allSVGs[i].style.width = "300px";
+    }
+    
+}
+
+
+
+const addImage = (keyCode) =>{
+    const imageDesc = keyCode.key.toUpperCase();
     const image = document.createElement('img');
-    image.src  = `assets/${letter}.svg`;
+    image.src  = `assets/${imageDesc}.svg`;
     image.className = 'character';
     images.push(image);
     for(let i=0; i< images.length; i++){
@@ -38,4 +59,13 @@ const updateImages = (letter) =>{
     }
 }
 
-updateString();
+const removelastImage = () =>{
+    if(images.length > 0){
+        const lastItem = images.pop();
+        document.querySelector('.translation').removeChild(lastItem);
+    }else{
+        return;
+    }
+}
+
+updateCanvas();

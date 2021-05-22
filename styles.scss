@@ -38,12 +38,14 @@ body{
 }
 
 .translation{
+    border: 1px solid red;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 80%;
     .character{
-        height: 80px;
+        border: 1px solid blue;
+        width: 80px;
         padding: 0 8px;
     }
 }
