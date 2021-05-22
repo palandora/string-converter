@@ -39,11 +39,25 @@ const updateCanvas = () =>{
 
 const checkSizing = () =>{
     const allSVGs = document.getElementsByClassName("character");
-    const totalWidth = 0;
+    const containerSVGs = document.querySelector(".translation");
+    const widthContainer = parseInt(window.getComputedStyle(containerSVGs).width);
+    let totalWidth = 0;
+
+    const boundsSVGs = document.querySelector(".translation");
+
     for(let i=0; i<allSVGs.length; i++){
-        allSVGs[i].style.width = "300px";
+        const cssValueString = window.getComputedStyle(allSVGs[i]).width;
+        const cssValueInt = parseInt(cssValueString);
+        totalWidth += cssValueInt;
     }
-    
+
+    if(totalWidth > widthContainer){
+        console.log("pam");
+        /*for(let i=0; i<allSVGs.length; i++){
+            allSVGs[i].style.width = "40px";
+        }*/
+    }
+
 }
 
 
