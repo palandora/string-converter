@@ -63,20 +63,32 @@ const checkSizing = () =>{
 
 
 const addImage = (keyCode) =>{
+    createContainer();
+
     const imageDesc = keyCode.key.toUpperCase();
     const image = document.createElement('img');
     image.src  = `assets/${imageDesc}.svg`;
     image.className = 'character';
-    images.push(image);
-    for(let i=0; i< images.length; i++){
-        document.querySelector('.translation').appendChild(images[i]);
-    }
+    document.querySelector('.translation').appendChild(image);
 }
 
 const removelastImage = () =>{
-    if(images.length > 0){
-        const lastItem = images.pop();
-        document.querySelector('.translation').removeChild(lastItem);
+    const lastElement = document.querySelector(".translation").lastChild;
+    document.querySelector('.translation').removeChild(lastElement);
+
+    if(document.getElementsByClassName("character").length == 0){
+        const container = document.querySelector('.translation');
+        document.querySelector('body').removeChild(container);
+    }
+    
+}
+
+
+const createContainer = () => {
+    if(document.querySelector('.translation') == null){
+        const container = document.createElement('div');
+        container.className = "translation";
+        document.querySelector('body').appendChild(container);
     }else{
         return;
     }

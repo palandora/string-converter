@@ -26,24 +26,26 @@ body{
     }
 }
 
-.clearAll {
-    padding: 0;
-    margin: 0;
-}
-
-.spanClass {
-    border: 1px solid red; 
-    padding: 0;
-    margin: 0;
-}
-
 .translation{
+    //border: 1px solid red;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 80%;
+    height: 20%;
     .character{
-        width: 20%;
-        padding: 0 8px;
+        height: 100%;
+        transform-origin: center;
+        animation: scaling .8s cubic-bezier(0.44, 0, 0.4, 1.63);
+        padding: 0 16px;
+    }
+}
+
+@keyframes scaling{
+    0%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
     }
 }
