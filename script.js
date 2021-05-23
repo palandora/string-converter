@@ -11,8 +11,11 @@ const updateCanvas = () =>{
         const currentStringLength = containerRegText.textContent.length;
 
         if(currentStringLength == 1){
+            containerRegText.classList.add("teaser");
+            document.querySelector('body').classList.add("backgroundCol");
             const newString = containerRegText.textContent.replace("", placeholderString);
             containerRegText.textContent = newString;
+            
         }
         if(e.code == "Backspace"){
             if(containerRegText.textContent == placeholderString) return;
@@ -26,6 +29,10 @@ const updateCanvas = () =>{
         else{
             const newString = containerRegText.textContent.replace(placeholderString, "");
             containerRegText.textContent = newString;
+            if(containerRegText.classList[1] == "teaser"){
+                containerRegText.classList.remove("teaser");
+                document.querySelector('body').classList.remove("backgroundCol");
+            }
             
             containerRegText.textContent += `${e.key}`;
             
