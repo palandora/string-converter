@@ -8,7 +8,7 @@
 }
 
 body{
-    background: rgb(233, 233, 233);
+    background: royalblue;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -17,25 +17,23 @@ body{
 }
 
 
-.backgroundCol{
-    background: royalblue;
-}
-
 .original_text{
     padding: 40px;
-    color:rgba(0, 0, 0,0.5);
+    color:rgba(255, 255, 255,0.5);
     text-align: center;
+    letter-spacing: 1px;
     font: {
+        weight: 400;
         family: 'Open Sans', sans-serif;
         size: 14px;
     }
     &.teaser{
-        color: rgba($color: #fff, $alpha: 1.0);
         text-align: center;
         font: {
             family: 'Open Sans', sans-serif;
             size: 40px; 
         }
+        animation: fadeIn .5s ease-in-out forwards;
     }
 }
 
@@ -49,7 +47,7 @@ body{
     .character{
         height: 100%;
         transform-origin: center;
-        animation: scaling .8s cubic-bezier(0.44, 0, 0.4, 1.63);
+        animation: scaling .8s cubic-bezier(0.44, 0, 0.4, 1.63) forwards;
         padding: 0 16px;
     }
 }
@@ -60,5 +58,15 @@ body{
     }
     100%{
         transform: scale(1);
+    }
+}
+
+@keyframes fadeIn{
+    0%{
+        color: rgba($color: #fff, $alpha: 0);
+        transform: translateY(25px);
+    } 100% {
+        transform: translateY(0);
+        color: rgba($color: #fff, $alpha: 1);
     }
 }

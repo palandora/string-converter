@@ -12,7 +12,6 @@ const updateCanvas = () =>{
 
         if(currentStringLength == 1){
             containerRegText.classList.add("teaser");
-            document.querySelector('body').classList.add("backgroundCol");
             const newString = containerRegText.textContent.replace("", placeholderString);
             containerRegText.textContent = newString;
             
@@ -31,7 +30,6 @@ const updateCanvas = () =>{
             containerRegText.textContent = newString;
             if(containerRegText.classList[1] == "teaser"){
                 containerRegText.classList.remove("teaser");
-                document.querySelector('body').classList.remove("backgroundCol");
             }
             
             containerRegText.textContent += `${e.key}`;
@@ -74,7 +72,7 @@ const addImage = (keyCode) =>{
 
     const imageDesc = keyCode.key.toUpperCase();
     const image = document.createElement('img');
-    image.src  = `assets/${imageDesc}.svg`;
+    image.src  = `assets/inverted/${imageDesc}.svg`;
     image.className = 'character';
     document.querySelector('.translation').appendChild(image);
 }
